@@ -33,7 +33,7 @@ jobs:
           status: 'completed'
           conclusion: 'success'
       - uses: maxkomarychev/octions/octions/checks/create@master
-        id: dod-check
+        id: dod-uncheck
         if: ${{ contains(github.event.comment.body, '- [ ]') }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
