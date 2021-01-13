@@ -11,3 +11,16 @@ jobs:
       - uses: actions/checkout@master
       - name: Check Definition of Done
         uses: ./.github/dod-check
+      - uses: maxkomarychev/octions/octions/checks/create@master
+        id: dod-check
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: DoD-check
+          head_sha: ${{ github.event.issue.pull_request.sha }}
+          status: 'completed'
+          conclusion: 'success'
+      - name: Print outputs
+        run: |
+          echo ${{ steps.dod-check.outputs.id }}
+          echo ${{ steps.dod-check.outputs.number }}
+          echo ${{ steps.dod-check.outputs.status }}
