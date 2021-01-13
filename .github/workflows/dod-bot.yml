@@ -5,7 +5,7 @@ name: Dod check
 jobs:
   dod_check:
     name: DoD check
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, 'Definition of done check') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
