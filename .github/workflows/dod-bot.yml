@@ -16,7 +16,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: ${{ github.event.issue.number }}
-          custom_outputs: sha:head.sha
+          custom_outputs: sha:data.head.sha
       - name: Print outputs
         run: |
           echo ${{ steps.pr.outputs.id }}
@@ -28,7 +28,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: DoD-check
-          head_sha: ${{ github.event.issue.pull_request.sha }}
+          head_sha: ${{ steps.pr.outputs.sha }}
           status: 'completed'
           conclusion: 'success'
       - name: Print outputs
