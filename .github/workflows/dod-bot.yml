@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Definition of Done is met
           head_sha: ${{ steps.pr.outputs.sha }}
+          details_url: ${{ github.event.comment.html_url }}
           status: 'completed'
           conclusion: 'success'
       - uses: maxkomarychev/octions/octions/checks/create@master
@@ -30,5 +31,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Definition of Done is met
           head_sha: ${{ steps.pr.outputs.sha }}
+          details_url: ${{ github.event.comment.html_url }}
           status: 'completed'
           conclusion: 'failure'
