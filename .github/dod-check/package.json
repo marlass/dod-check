@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
   }
 }
