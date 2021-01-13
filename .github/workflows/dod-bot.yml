@@ -8,27 +8,18 @@ jobs:
     if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, 'Definition of done check') }}
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@master
-      # - name: Check Definition of Done
-      #   uses: ./.github/dod-check
       - uses: maxkomarychev/octions/octions/pulls/get@master
         id: pr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: ${{ github.event.issue.number }}
           custom_outputs: sha:data.head.sha
-      - name: Print outputs
-        run: |
-          echo ${{ steps.pr.outputs.id }}
-          echo ${{ steps.pr.outputs.number }}
-          echo ${{ steps.pr.outputs.status }}
-          echo ${{ steps.pr.outputs.sha }}
       - uses: maxkomarychev/octions/octions/checks/create@master
         id: dod-check
         if: ${{ !contains(github.event.comment.body, '- [ ]') }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: DoD-check
+          name: Definition of Done is met
           head_sha: ${{ steps.pr.outputs.sha }}
           status: 'completed'
           conclusion: 'success'
@@ -37,7 +28,7 @@ jobs:
         if: ${{ contains(github.event.comment.body, '- [ ]') }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: DoD-check
+          name: Definition of Done is met
           head_sha: ${{ steps.pr.outputs.sha }}
           status: 'completed'
           conclusion: 'failure'
