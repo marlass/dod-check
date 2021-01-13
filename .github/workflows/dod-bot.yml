@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Check Definition of Done
-        uses: ./.github/dod-check
+      # - name: Check Definition of Done
+      #   uses: ./.github/dod-check
       - uses: maxkomarychev/octions/octions/pulls/get@master
         id: pr
         with:
