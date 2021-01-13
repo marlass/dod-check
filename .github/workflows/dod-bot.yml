@@ -8,5 +8,6 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Check Definition of Done
         uses: ./.github/dod-check
